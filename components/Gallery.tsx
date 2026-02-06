@@ -1,20 +1,39 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X } from 'lucide-react';
+import { X, Grid } from 'lucide-react';
 
-import { galleryImages } from '../src/data/galleryImages';
-
-const images = galleryImages.map((filename, index) => ({
-  url: `/declan/images/gallery/${filename}`,
-  type: "Baby Photos",
-  desc: `Memory #${index + 1}`
-}));
+import { albums } from '../src/data/galleryImages';
 
 const Gallery: React.FC = () => {
-  const [selectedImage, setSelectedImage] = useState<typeof images[0] | null>(null);
+  const [selectedImage, setSelectedImage] = useState<{ url: string; type: string; desc: string } | null>(null);
+  const [activeAlbumId, setActiveAlbumId] = useState('all');
+
+  const activeAlbum = albums.find(a => a.id === activeAlbumId) || albums[0];
+  const images = activeAlbum.images.map((filename, index) => ({
+    url: `/declan/images/gallery/${filename}`,
+    type: activeAlbum.title,
+    desc: `Photo ${index + 1}`
+  }));
 
   return (
     <>
+      {/* Album Selector */}
+      <div className="flex flex-wrap justify-center gap-2 mb-8">
+        {albums.map((album) => (
+          <button
+            key={album.id}
+            onClick={() => setActiveAlbumId(album.id)}
+            className={`px-6 py-2 rounded-full text-sm font-bold transition-all duration-300 ${
+              activeAlbumId === album.id
+                ? 'bg-gradient-to-r from-gold-400 to-gold-600 text-white shadow-lg scale-105'
+                : 'bg-white text-slate-500 hover:bg-slate-50 hover:text-slate-700 border border-slate-200'
+            }`}
+          >
+            {album.title}
+          </button>
+        ))}
+      </div>
+
       <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
         {images.map((img, idx) => (
           <motion.div

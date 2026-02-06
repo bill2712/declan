@@ -1,4 +1,10 @@
-export const galleryImages = [
+export interface Album {
+  id: string;
+  title: string;
+  images: string[];
+}
+
+const allImages = [
   "IMG_01DE57C2-8CC2-43FE-83C3-E8708AA6674C.JPEG",
   "IMG_0619.jpg",
   "IMG_0620.jpg",
@@ -122,3 +128,39 @@ export const galleryImages = [
   "c01de0ef-9927-4aa8-b14c-3fb88c996446.JPG",
   "de197735-9b37-4cf1-98a6-5d36eb2bd404.JPG"
 ];
+
+// INSTRUCTIONS: 
+// To add images to specific albums, copy the filename from 'allImages' and paste it into the 'images' array of the desired album.
+// Currently all images are shown in 'All'.
+
+export const albums: Album[] = [
+  {
+    id: 'all',
+    title: '全部照片',
+    images: allImages 
+  },
+  {
+    id: 'ultrasound',
+    title: '超聲波',
+    images: [
+      // Add ultrasound image filenames here
+    ]
+  },
+  {
+    id: 'pregnancy',
+    title: '懷孕點滴',
+    images: [
+       // Add pregnancy image filenames here
+    ]
+  },
+   {
+    id: 'life',
+    title: '生活照',
+    images: [
+       // Add daily life image filenames here
+    ]
+  }
+];
+
+// Keep this for backward compatibility if needed, or remove
+export const galleryImages = allImages;

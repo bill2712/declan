@@ -8,6 +8,8 @@ import BlessingGenerator from './components/BlessingGenerator';
 import Journey from './components/Journey';
 import { ResourceLink } from './types';
 import { Sparkles, Calendar, ArrowDown } from 'lucide-react';
+import GrowthChart from './components/GrowthChart';
+import SleepMode from './components/SleepMode';
 
 const resources: ResourceLink[] = [
   {
@@ -39,6 +41,16 @@ function App() {
     <div className="min-h-screen font-sans text-slate-800 overflow-x-hidden bg-[#FDFBF7]">
       {/* Hero Section */}
       <section className="relative h-screen flex flex-col items-center justify-center overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="/declan/images/gallery/IMG_5316.JPG" 
+            alt="Baby Declan" 
+            className="w-full h-full object-cover opacity-20 scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#FDFBF7]/50 to-[#FDFBF7]"></div>
+        </div>
+
         {/* Animated Background */}
         <div className="absolute inset-0 z-0 opacity-40 pointer-events-none">
            <motion.div 
@@ -174,6 +186,11 @@ function App() {
             ))}
           </div>
         </div>
+      </section>
+
+      {/* Growth Chart */}
+      <section className="py-32 px-4 bg-white">
+        <GrowthChart />
       </section>
 
       {/* Heartbeat & Gallery */}
