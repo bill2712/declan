@@ -4,7 +4,11 @@ export interface Album {
   images: string[];
 }
 
-const allImages = [
+export const albums: Album[] = [
+  {
+    id: 'all',
+    title: '全部照片',
+    images: [
   "IMG_01DE57C2-8CC2-43FE-83C3-E8708AA6674C.JPEG",
   "IMG_0619.jpg",
   "IMG_0620.jpg",
@@ -127,40 +131,147 @@ const allImages = [
   "IMG_5538.JPG",
   "c01de0ef-9927-4aa8-b14c-3fb88c996446.JPG",
   "de197735-9b37-4cf1-98a6-5d36eb2bd404.JPG"
-];
-
-// INSTRUCTIONS: 
-// To add images to specific albums, copy the filename from 'allImages' and paste it into the 'images' array of the desired album.
-// Currently all images are shown in 'All'.
-
-export const albums: Album[] = [
-  {
-    id: 'all',
-    title: '全部照片',
-    images: allImages 
+]
   },
   {
-    id: 'ultrasound',
-    title: '超聲波',
-    images: [
-      // Add ultrasound image filenames here
-    ]
+    id: 'trimester1',
+    title: '第一孕期 (0-12w)',
+    images: []
   },
   {
-    id: 'pregnancy',
-    title: '懷孕點滴',
+    id: 'trimester2',
+    title: '第二孕期 (13-26w)',
     images: [
-       // Add pregnancy image filenames here
-    ]
+  "IMG_01DE57C2-8CC2-43FE-83C3-E8708AA6674C.JPEG",
+  "IMG_0619.jpg",
+  "IMG_0620.jpg",
+  "IMG_0621.jpg",
+  "IMG_0622.jpg",
+  "IMG_3153.jpg",
+  "IMG_3154.jpg",
+  "IMG_3155.jpg",
+  "IMG_3156.jpg",
+  "IMG_3157.jpg",
+  "IMG_3405.jpg",
+  "IMG_3406.jpg",
+  "IMG_3407.jpg",
+  "IMG_3408.jpg",
+  "IMG_3409.jpg",
+  "IMG_3417.jpg",
+  "IMG_3418.jpg"
+]
   },
-   {
-    id: 'life',
-    title: '生活照',
+  {
+    id: 'trimester3',
+    title: '第三孕期 (27w+)',
     images: [
-       // Add daily life image filenames here
-    ]
+  "IMG_0760.JPG",
+  "IMG_3280.JPG",
+  "IMG_4050.jpg",
+  "IMG_4106.JPG",
+  "IMG_4107.JPG",
+  "IMG_4108.JPG",
+  "IMG_4109.JPG",
+  "IMG_4110.JPG",
+  "IMG_4111.JPG",
+  "IMG_4112.JPG",
+  "IMG_4116.JPG",
+  "IMG_4117.JPG",
+  "IMG_4118.JPG",
+  "IMG_4119.JPG",
+  "IMG_4120.JPG",
+  "IMG_4121.JPG",
+  "IMG_4122.JPG",
+  "IMG_4123.JPG",
+  "IMG_4124.JPG",
+  "IMG_4125.JPG",
+  "IMG_4126.JPG",
+  "IMG_4127.JPG",
+  "IMG_4128.JPG",
+  "IMG_4129.JPG",
+  "IMG_4130.JPG",
+  "IMG_4131.JPG",
+  "IMG_4132.JPG",
+  "IMG_4133.JPG",
+  "IMG_4134.JPG",
+  "IMG_4135.JPG",
+  "IMG_4136.JPG",
+  "IMG_4137.JPG",
+  "IMG_4138.JPG",
+  "IMG_4142.JPG",
+  "IMG_4143.JPG",
+  "IMG_4144.JPG",
+  "IMG_4145.JPG",
+  "IMG_4146.JPG",
+  "IMG_4147.JPG",
+  "IMG_4148.JPG",
+  "IMG_4149.JPG",
+  "IMG_4150.JPG",
+  "IMG_4151.JPG",
+  "IMG_4152.JPG",
+  "IMG_4153.JPG",
+  "IMG_4154.JPG",
+  "IMG_4155.JPG",
+  "IMG_4516.jpg",
+  "IMG_4517.jpg",
+  "IMG_4518.jpg",
+  "IMG_4519.jpg",
+  "IMG_4520.jpg",
+  "IMG_4523.jpg",
+  "IMG_4526.jpg",
+  "IMG_5005.jpg",
+  "IMG_5283.JPG",
+  "IMG_5284.JPG",
+  "IMG_5285.JPG",
+  "IMG_5286.JPG",
+  "IMG_5287.JPG",
+  "IMG_5288 2.JPG",
+  "IMG_5289.JPG",
+  "IMG_5290.JPG",
+  "IMG_5291.JPG",
+  "IMG_5292.JPG",
+  "IMG_5293.JPG",
+  "IMG_5294.JPG",
+  "IMG_5295.JPG",
+  "IMG_5296.JPG",
+  "IMG_5300.JPG",
+  "IMG_5301.JPG",
+  "IMG_5302.jpg",
+  "IMG_5303.jpg",
+  "IMG_5304.jpg",
+  "IMG_5305.JPG",
+  "IMG_5306.JPG",
+  "IMG_5307.JPG",
+  "IMG_5308.JPG",
+  "IMG_5309.JPG",
+  "IMG_5310.JPG",
+  "IMG_5311.JPG",
+  "IMG_5312.JPG",
+  "IMG_5313.JPG",
+  "IMG_5314.JPG",
+  "IMG_5316.JPG",
+  "IMG_5317.JPG",
+  "IMG_5318.JPG",
+  "IMG_5319.JPG",
+  "IMG_5320.JPG",
+  "IMG_5321.JPG",
+  "IMG_5322.JPG",
+  "IMG_5323.JPG",
+  "IMG_5324.jpg",
+  "IMG_5325.jpg",
+  "IMG_5326.JPG",
+  "IMG_5327.JPG",
+  "IMG_5328.JPG",
+  "IMG_5329.JPG",
+  "IMG_5330.JPG",
+  "IMG_5362.JPG",
+  "IMG_5363.JPG",
+  "IMG_5364.JPG",
+  "IMG_5538.JPG",
+  "c01de0ef-9927-4aa8-b14c-3fb88c996446.JPG",
+  "de197735-9b37-4cf1-98a6-5d36eb2bd404.JPG"
+]
   }
 ];
 
-// Keep this for backward compatibility if needed, or remove
-export const galleryImages = allImages;
+export const galleryImages = albums[0].images;
