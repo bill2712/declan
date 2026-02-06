@@ -46,9 +46,9 @@ function App() {
           <img 
             src="/declan/images/gallery/IMG_5316.JPG" 
             alt="Baby Declan" 
-            className="w-full h-full object-cover opacity-20 scale-105"
+            className="w-full h-full object-cover opacity-70 scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#FDFBF7]/50 to-[#FDFBF7]"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-[#FDFBF7]/40 via-[#FDFBF7]/20 to-[#FDFBF7]"></div>
         </div>
 
         {/* Animated Background */}
