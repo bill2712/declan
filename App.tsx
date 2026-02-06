@@ -81,7 +81,7 @@ function App() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="flex items-center justify-center gap-3 mb-6 text-gold-600 tracking-[0.2em] uppercase text-xs md:text-sm font-bold"
+            className="flex items-center justify-center gap-3 mb-6 text-gold-600 tracking-[0.2em] uppercase text-xs md:text-sm font-bold drop-shadow-md"
           >
             <Sparkles className="w-4 h-4" />
             <span>Coming Soon 2026</span>
@@ -92,23 +92,25 @@ function App() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="text-6xl md:text-8xl lg:text-9xl font-serif text-slate-900 mb-6 tracking-tighter leading-none"
+            className="text-6xl md:text-8xl lg:text-9xl font-serif text-slate-900 mb-6 tracking-tighter leading-none drop-shadow-xl"
+            style={{ textShadow: '0 4px 12px rgba(255,255,255,0.5)' }}
           >
-            Declan<span className="text-gold-500">.</span>
+            Declan<span className="text-gold-500 drop-shadow-md">.</span>
           </motion.h1>
           
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.6 }}
-            className="h-px w-24 bg-gradient-to-r from-transparent via-gold-400 to-transparent mx-auto mb-8"
+            className="h-px w-24 bg-gradient-to-r from-transparent via-gold-400 to-transparent mx-auto mb-8 drop-shadow"
           ></motion.div>
           
           <motion.p 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.8 }}
-            className="text-xl md:text-3xl font-serif text-slate-600 mb-3"
+            className="text-xl md:text-3xl font-serif text-slate-600 mb-3 drop-shadow-md font-medium"
+            style={{ textShadow: '0 2px 4px rgba(255,255,255,0.8)' }}
           >
             A New Chapter Begins
           </motion.p>
@@ -117,7 +119,7 @@ function App() {
              initial={{ opacity: 0 }}
              animate={{ opacity: 1 }}
              transition={{ duration: 1, delay: 1 }}
-             className="text-gold-600/80 italic font-serif text-lg md:text-xl"
+             className="text-gold-600/80 italic font-serif text-lg md:text-xl drop-shadow-sm"
           >
              Bill Tsang & Cher Leung
           </motion.p>
@@ -126,7 +128,7 @@ function App() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.2 }}
-            className="mt-16"
+            className="mt-16 drop-shadow-lg"
           >
             <Countdown />
           </motion.div>
