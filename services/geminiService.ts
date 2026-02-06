@@ -1,10 +1,16 @@
 import { GoogleGenAI } from "@google/genai";
 import { BlessingRequest } from "../types";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-
 export const generateFancyBlessing = async (request: BlessingRequest): Promise<string> => {
   try {
+    const apiKey = process.env.API_KEY || process.env.GEMINI_API_KEY;
+    if (!apiKey) {
+      console.warn("API Key is missing for Gemini Service");
+      return "祝福傳送失敗：未設定 API Key。";
+    }
+
+    const ai = new GoogleGenAI({ apiKey });
+    
     const prompt = `
       You are a poetic assistant creating a beautiful, warm, and traditional Chinese blessing for a baby named Declan Tsang (Date of birth: Feb 20, 2026).
       The parents are Bill Tsang and Cher Leung.
@@ -21,7 +27,7 @@ export const generateFancyBlessing = async (request: BlessingRequest): Promise<s
     `;
 
     const response = await ai.models.generateContent({
-      model: 'gemini-3-flash-preview',
+      model: 'gemini-2.0-flash', 
       contents: prompt,
       config: {
         thinkingConfig: { thinkingBudget: 0 } 
