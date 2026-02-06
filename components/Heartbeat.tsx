@@ -3,15 +3,30 @@ import { Play, Pause, Heart, Music, Volume2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const tracks = [
-  { title: "Heartbeat Recording 1", file: "Inlet Birth.m4a" },
-  { title: "Heartbeat Recording 2", file: "Inlet Birth 2.m4a" },
-  { title: "Heartbeat Recording 3", file: "Inlet Birth 3.m4a" },
-  { title: "Heartbeat Recording 4", file: "Inlet Birth 4.m4a" },
-  { title: "Heartbeat Recording 5", file: "Inlet Birth 5.m4a" },
-  { title: "Heartbeat Recording 6", file: "Inlet Birth 6.m4a" },
-  { title: "Heartbeat Recording 7", file: "Inlet Birth 7.m4a" },
-  { title: "Heartbeat Recording 8", file: "Inlet Birth 8.m4a" },
+  { title: "Heartbeat Recording 1", file: "Inlet Birth.m4a", date: "2025-08-20" },
+  { title: "Heartbeat Recording 2", file: "Inlet Birth 2.m4a", date: "2025-09-15" },
+  { title: "Heartbeat Recording 3", file: "Inlet Birth 3.m4a", date: "2025-10-10" },
+  { title: "Heartbeat Recording 4", file: "Inlet Birth 4.m4a", date: "2025-11-05" },
+  { title: "Heartbeat Recording 5", file: "Inlet Birth 5.m4a", date: "2025-12-01" },
+  { title: "Heartbeat Recording 6", file: "Inlet Birth 6.m4a", date: "2025-12-25" },
+  { title: "Heartbeat Recording 7", file: "Inlet Birth 7.m4a", date: "2026-01-10" },
+  { title: "Heartbeat Recording 8", file: "Inlet Birth 8.m4a", date: "2026-02-01" },
 ];
+
+const calculateGestationalAge = (dateString: string) => {
+  const recordingDate = new Date(dateString);
+  // Due Date: Feb 20, 2026
+  // Conception (approx): Due Date - 280 days = May 16, 2025
+  const conceptionDate = new Date('2025-05-16');
+  
+  const diffTime = recordingDate.getTime() - conceptionDate.getTime();
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  
+  const weeks = Math.floor(diffDays / 7);
+  const days = diffDays % 7;
+  
+  return { weeks, days };
+};
 
 const Heartbeat: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -61,7 +76,16 @@ const Heartbeat: React.FC = () => {
         </div>
 
         <h3 className="text-xl font-serif font-bold text-slate-800 mb-1 text-center">{currentTrack.title}</h3>
-        <p className="text-xs text-slate-400 font-mono tracking-widest uppercase mb-6">Now Playing</p>
+        <div className="flex flex-col items-center mb-6">
+          <p className="text-xs text-slate-400 font-mono tracking-widest uppercase">Now Playing</p>
+          <div className="mt-2 flex items-center gap-2 text-sm font-serif text-slate-600 bg-white px-3 py-1 rounded-full shadow-sm border border-slate-100">
+             <span className="text-gold-500 font-bold">
+               {calculateGestationalAge(currentTrack.date).weeks}W {calculateGestationalAge(currentTrack.date).days}D
+             </span>
+             <span className="text-slate-300">|</span>
+             <span className="text-slate-400 text-xs">{currentTrack.date}</span>
+          </div>
+        </div>
 
         <div className="flex items-center gap-2 mb-6 h-8">
            {[...Array(12)].map((_, i) => (
@@ -118,6 +142,9 @@ const Heartbeat: React.FC = () => {
                 <div>
                    <p className={`font-serif text-base ${currentTrackIndex === idx ? 'text-slate-900 font-bold' : 'text-slate-600'}`}>
                      {track.title}
+                   </p>
+                   <p className="text-xs text-slate-400 font-serif mt-0.5">
+                      {calculateGestationalAge(track.date).weeks} Weeks {calculateGestationalAge(track.date).days} Days
                    </p>
                    {currentTrackIndex === idx && (
                      <p className="text-[10px] text-gold-600 font-bold uppercase tracking-wider mt-0.5">Playing</p>

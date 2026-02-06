@@ -2,35 +2,20 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 
-const images = [
-  {
-    url: "https://picsum.photos/800/800?random=1",
-    type: "超聲波照片",
-    desc: "12週 - 初次見面"
-  },
-  {
-    url: "https://picsum.photos/600/800?random=2",
-    type: "生活照",
-    desc: "準備好的小床"
-  },
-  {
-    url: "https://picsum.photos/800/600?random=3",
-    type: "超聲波照片",
-    desc: "20週 - 看到小手了"
-  },
-  {
-    url: "https://picsum.photos/600/900?random=4",
-    type: "生活照",
-    desc: "爸爸媽媽的期待"
-  }
-];
+import { galleryImages } from '../src/data/galleryImages';
+
+const images = galleryImages.map((filename, index) => ({
+  url: `/declan/images/gallery/${filename}`,
+  type: "Baby Photos",
+  desc: `Memory #${index + 1}`
+}));
 
 const Gallery: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<typeof images[0] | null>(null);
 
   return (
     <>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]">
+      <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
         {images.map((img, idx) => (
           <motion.div
             key={idx}
@@ -38,20 +23,18 @@ const Gallery: React.FC = () => {
             onClick={() => setSelectedImage(img)}
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: idx * 0.1 }}
-            className={`relative group overflow-hidden rounded-xl shadow-lg cursor-pointer ${
-              idx % 3 === 0 ? 'col-span-2 row-span-2' : 'col-span-1 row-span-1'
-            }`}
+            viewport={{ once: true, margin: "200px" }}
+            transition={{ duration: 0.5 }}
+            className="relative group overflow-hidden rounded-xl shadow-lg cursor-pointer break-inside-avoid"
           >
             <img 
               src={img.url} 
               alt={img.desc} 
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+              loading="lazy"
+              className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110" 
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
               <span className="text-gold-300 text-[10px] font-bold uppercase tracking-wider mb-1">{img.type}</span>
-              <p className="text-white font-serif text-lg leading-tight">{img.desc}</p>
             </div>
           </motion.div>
         ))}
