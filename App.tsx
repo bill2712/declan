@@ -10,6 +10,8 @@ import { ResourceLink } from './types';
 import { Sparkles, Calendar, ArrowDown } from 'lucide-react';
 import GrowthChart from './components/GrowthChart';
 import SleepMode from './components/SleepMode';
+import Dock from './components/Dock';
+import { useState } from 'react';
 
 const resources: ResourceLink[] = [
   {
@@ -34,13 +36,14 @@ const resources: ResourceLink[] = [
 
 function App() {
   const { scrollY } = useScroll();
+  const [isSleepMode, setIsSleepMode] = useState(false);
   const y1 = useTransform(scrollY, [0, 500], [0, 200]);
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
 
   return (
     <div className="min-h-screen font-sans text-slate-800 overflow-x-hidden bg-[#FDFBF7]">
       {/* Hero Section */}
-      <section className="relative h-screen flex flex-col items-center justify-center overflow-hidden">
+      <section id="hero" className="relative h-screen flex flex-col items-center justify-center overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img 
@@ -165,7 +168,7 @@ function App() {
       </section>
 
       {/* Journey Section */}
-      <section className="py-32 px-4 bg-[#FDFBF7]">
+      <section id="journey" className="py-32 px-4 bg-[#FDFBF7]">
         <div className="text-center mb-24">
           <span className="text-gold-500 font-bold tracking-[0.2em] text-xs uppercase">Milestones</span>
           <h2 className="text-4xl md:text-5xl font-serif mt-4 text-slate-900">我們的旅程</h2>
@@ -189,12 +192,12 @@ function App() {
       </section>
 
       {/* Growth Chart */}
-      <section className="py-32 px-4 bg-white">
+      <section id="growth" className="py-32 px-4 bg-white">
         <GrowthChart />
       </section>
 
       {/* Heartbeat & Gallery */}
-      <section className="py-32 px-4 bg-slate-50">
+      <section id="memories" className="py-32 px-4 bg-slate-50">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-24">
             <span className="text-gold-500 font-bold tracking-[0.2em] text-xs uppercase">Memories</span>
@@ -210,7 +213,7 @@ function App() {
       </section>
 
       {/* Blessing Generator */}
-      <section className="py-32 px-4 bg-[#FDFBF7]">
+      <section id="wishes" className="py-32 px-4 bg-[#FDFBF7]">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
              <span className="text-gold-500 font-bold tracking-[0.2em] text-xs uppercase">Wishes</span>
@@ -221,7 +224,7 @@ function App() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-slate-900 text-slate-300 py-16 px-4 text-center">
+      <footer className="bg-slate-900 text-slate-300 py-16 px-4 text-center pb-32">
         <h3 className="font-serif text-2xl text-gold-100 mb-6 tracking-wide">Declan Tsang</h3>
         <div className="flex justify-center gap-6 mb-8 text-gold-400/60">
            {/* Social Icons could go here */}
@@ -231,6 +234,12 @@ function App() {
           Est. 2026
         </p>
       </footer>
+
+      {/* Navigation Dock */}
+      <Dock onSleepClick={() => setIsSleepMode(true)} />
+
+      {/* Floating Elements */}
+      <SleepMode isOpen={isSleepMode} onClose={() => setIsSleepMode(false)} />
     </div>
   );
 }

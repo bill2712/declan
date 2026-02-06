@@ -8,8 +8,12 @@ const sounds = [
   { id: 'lullaby', name: 'Lullaby', icon: Music, file: '/declan/audio/sleep/lullaby.mp3' },
 ];
 
-const SleepMode: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
+interface SleepModeProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+const SleepMode: React.FC<SleepModeProps> = ({ isOpen, onClose }) => {
   const [activeSound, setActiveSound] = useState<string | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(0.5);
@@ -39,11 +43,6 @@ const SleepMode: React.FC = () => {
         audioRef.current.pause();
       }
     }
-
-    return () => {
-      // Cleanup on unmount or sound change not handled here to persist if needed, 
-      // but strictly we stop if component unmounts
-    };
   }, [activeSound, isPlaying]);
 
   // Volume control
@@ -52,6 +51,15 @@ const SleepMode: React.FC = () => {
       audioRef.current.volume = volume;
     }
   }, [volume]);
+
+  // Close handler: Stop audio and call parent close
+  const handleClose = () => {
+    setIsPlaying(false);
+    if (audioRef.current) {
+        audioRef.current.pause();
+    }
+    onClose();
+  };
 
   const toggleSound = (id: string) => {
     if (activeSound === id) {
@@ -63,39 +71,26 @@ const SleepMode: React.FC = () => {
   };
 
   return (
-    <>
-      {/* Floating Trigger Button */}
-      <motion.button
-        className="fixed bottom-6 left-6 z-50 bg-indigo-900 text-white p-4 rounded-full shadow-2xl hover:bg-indigo-800 transition-colors border-2 border-indigo-700"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        onClick={() => setIsOpen(true)}
-        aria-label="Sleep Mode"
-      >
-        <Moon size={24} fill="currentColor" />
-      </motion.button>
-
-      {/* Full Screen Overlay */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] bg-black text-slate-400 flex flex-col items-center justify-center p-6"
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-[60] bg-black text-slate-400 flex flex-col items-center justify-center p-6"
+        >
+          {/* Close Button */}
+          <button 
+            onClick={handleClose}
+            className="absolute top-6 right-6 p-4 rounded-full bg-gray-900 text-gray-500 hover:text-white transition-colors"
           >
-            {/* Close Button */}
-            <button 
-              onClick={() => { setIsOpen(false); setIsPlaying(false); }}
-              className="absolute top-6 right-6 p-4 rounded-full bg-gray-900 text-gray-500 hover:text-white transition-colors"
-            >
-              <X size={32} />
-            </button>
+            <X size={32} />
+          </button>
 
-            <div className="text-center max-w-md w-full">
-              <Moon size={64} className="text-indigo-500 mx-auto mb-6 opacity-50" />
-              <h2 className="text-3xl font-serif text-gray-200 mb-2 tracking-wide">Sleep Mode</h2>
-              <p className="text-gray-600 mb-12">Low light. Soothing sounds.</p>
+          <div className="text-center max-w-md w-full">
+            <Moon size={64} className="text-indigo-500 mx-auto mb-6 opacity-50" />
+            <h2 className="text-3xl font-serif text-gray-200 mb-2 tracking-wide">Sleep Mode</h2>
+            <p className="text-gray-600 mb-12">Low light. Soothing sounds.</p>
 
               {/* Sound Controls */}
               <div className="grid grid-cols-3 gap-4 mb-12">
@@ -143,20 +138,15 @@ const SleepMode: React.FC = () => {
                           onChange={(e) => setVolume(parseFloat(e.target.value))}
                           className="w-full accent-indigo-500 h-1 bg-gray-700 rounded-lg appearance-none cursor-pointer"
                         />
-                        <Volume2 size={16} />
                       </div>
                     </div>
                   </div>
-                  <p className="text-xs text-center text-gray-500">
-                    Currently playing: {sounds.find(s => s.id === activeSound)?.name} (Loop)
-                  </p>
                 </div>
               )}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 

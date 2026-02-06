@@ -3,6 +3,31 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Grid } from 'lucide-react';
 
 import { albums } from '../src/data/galleryImages';
+import Skeleton from './Skeleton';
+
+const ImageWithSkeleton = ({ src, alt, type }: { src: string, alt: string, type: string }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  return (
+    <div className="relative">
+      {!isLoaded && (
+        <div className="absolute inset-0 z-10">
+           <Skeleton />
+        </div>
+      )}
+      <img 
+        src={src} 
+        alt={alt} 
+        loading="lazy"
+        onLoad={() => setIsLoaded(true)}
+        className={`w-full h-auto object-cover transition-opacity duration-700 ${isLoaded ? 'opacity-100' : 'opacity-0'}`} 
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+        <span className="text-gold-300 text-[10px] font-bold uppercase tracking-wider mb-1">{type}</span>
+      </div>
+    </div>
+  );
+};
 
 const Gallery: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<{ url: string; type: string; desc: string } | null>(null);
@@ -46,15 +71,7 @@ const Gallery: React.FC = () => {
             transition={{ duration: 0.5 }}
             className="relative group overflow-hidden rounded-xl shadow-lg cursor-pointer break-inside-avoid"
           >
-            <img 
-              src={img.url} 
-              alt={img.desc} 
-              loading="lazy"
-              className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110" 
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-              <span className="text-gold-300 text-[10px] font-bold uppercase tracking-wider mb-1">{img.type}</span>
-            </div>
+            <ImageWithSkeleton src={img.url} alt={img.desc} type={img.type} />
           </motion.div>
         ))}
       </div>
