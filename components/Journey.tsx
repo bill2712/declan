@@ -50,7 +50,7 @@ const Journey: React.FC = () => {
               initial={{ opacity: 0, x: isEven ? -50 : 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: idx * 0.1 }}
+              transition={{ duration: 1.2, delay: idx * 0.2, ease: "easeOut" }}
               className={`relative flex flex-col md:flex-row items-center ${
                 isEven ? "md:flex-row-reverse" : ""
               }`}

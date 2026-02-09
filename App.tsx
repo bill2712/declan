@@ -41,7 +41,16 @@ function App() {
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
 
   return (
-    <div className="min-h-screen font-sans text-slate-800 overflow-x-hidden bg-[#FDFBF7]">
+    <div className="min-h-screen font-sans text-slate-800 overflow-x-hidden bg-[#FDFBF7] relative">
+      {/* Divine Ambient Lighting (Fixed) */}
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        {/* Top-Center Holy Light */}
+        <div className="absolute -top-[20%] left-1/2 -translate-x-1/2 w-[80vw] h-[60vh] bg-gold-200/20 rounded-full blur-[120px] mix-blend-multiply"></div>
+        {/* Bottom-Right Warmth */}
+        <div className="absolute -bottom-[20%] -right-[10%] w-[60vw] h-[50vh] bg-rose-100/30 rounded-full blur-[100px] mix-blend-multiply"></div>
+        {/* Vignette */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.03)_100%)]"></div>
+      </div>
       {/* Hero Section */}
       <section id="hero" className="relative h-screen flex flex-col items-center justify-center overflow-hidden">
         {/* Background Image */}

@@ -68,7 +68,7 @@ const Gallery: React.FC = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "200px" }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.8, delay: idx * 0.05, ease: "easeOut" }}
             className="relative group overflow-hidden rounded-xl shadow-lg cursor-pointer break-inside-avoid"
           >
             <ImageWithSkeleton src={img.url} alt={img.desc} type={img.type} />
