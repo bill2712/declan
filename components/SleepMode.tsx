@@ -3,9 +3,9 @@ import { Moon, Volume2, VolumeX, X, Play, Pause, Wind, CloudRain, Music } from '
 import { motion, AnimatePresence } from 'framer-motion';
 
 const sounds = [
-  { id: 'white_noise', name: 'White Noise', icon: Wind, file: '/declan/audio/sleep/white_noise.mp3' },
-  { id: 'rain', name: 'Rain', icon: CloudRain, file: '/declan/audio/sleep/rain.mp3' },
-  { id: 'lullaby', name: 'Lullaby', icon: Music, file: '/declan/audio/sleep/lullaby.mp3' },
+  { id: 'white_noise', name: 'White Noise', icon: Wind, file: '/audio/sleep/white_noise.mp3' },
+  { id: 'rain', name: 'Rain', icon: CloudRain, file: '/audio/sleep/rain.mp3' },
+  { id: 'lullaby', name: 'Lullaby', icon: Music, file: '/audio/sleep/lullaby.mp3' },
 ];
 
 interface SleepModeProps {

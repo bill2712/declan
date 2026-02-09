@@ -47,7 +47,7 @@ function App() {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="/declan/images/gallery/IMG_5316.JPG" 
+            src="/images/gallery/IMG_5316.JPG" 
             alt="Baby Declan" 
             className="w-full h-full object-cover opacity-70 scale-105"
           />

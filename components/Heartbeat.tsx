@@ -164,7 +164,7 @@ const Heartbeat: React.FC = () => {
 
       <audio 
         ref={audioRef} 
-        src={`/declan/audio/${currentTrack.file}`}
+        src={`/audio/${currentTrack.file}`}
         onEnded={() => setIsPlaying(false)}
         className="hidden" 
       />

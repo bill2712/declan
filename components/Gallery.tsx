@@ -35,7 +35,7 @@ const Gallery: React.FC = () => {
 
   const activeAlbum = albums.find(a => a.id === activeAlbumId) || albums[0];
   const images = activeAlbum.images.map((filename, index) => ({
-    url: `/declan/images/gallery/${filename}`,
+    url: `/images/gallery/${filename}`,
     type: activeAlbum.title,
     desc: `Photo ${index + 1}`
   }));
